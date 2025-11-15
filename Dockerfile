@@ -31,7 +31,7 @@ RUN chmod +x docker/build.sh
 RUN ./docker/build.sh
 
 RUN mkdir -p /works/input
-WORKDIR /works
+WORKDIR /works/nodeprof.js
 VOLUME ["/works/input"]
 
 # ENV PATH="${APP_HOME}/bin:${PATH}" \
