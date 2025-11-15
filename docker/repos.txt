@@ -1,0 +1,5 @@
+# List of repositories to clone during the Docker build.
+# Format: <git-url> [optional-target-directory]
+# Lines starting with # are ignored.
+https://github.com/graalvm/mx.git /workspace/mx
+https://github.com/Haiyang-Sun/nodeprof.js.git /workspace/nodeprof.js
