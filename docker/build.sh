@@ -9,6 +9,7 @@ git switch -c build-7.7.1 7.7.1
 export PATH="/works/mx:${PATH}"
 
 export JAVA_HOME="$(printf "y\n" | mx fetch-jdk --java-distribution labsjdk-ce-17 | grep '^export JAVA_HOME=' | cut -d= -f2)"
+echo "JAVA_HOME=${JAVA_HOME}" > /works/jdk.env
 echo "installed JAVA_HOME=${JAVA_HOME}"
 
 cd /

@@ -19,12 +19,12 @@ make: *** [Makefile:139: node] Error 2
 # Usage
 
 ```bash
-$ docker run --rm -v $(pwd):/works/input nodeprof # args ...
+$ docker run --rm -v $(pwd):/works/nodeprof.js/input nodeprof # args ...
 ```
 If you want a shorter command, create an alias:
 
 ```bash
-$ alias nodeprof='docker run --rm -v $(pwd):/works/input nodeprof' # WARNING use ' instead of " so $(pwd) is evaluated at runtime
+$ alias nodeprof='docker run --rm -v $(pwd):/works/nodeprof.js/input nodeprof' # WARNING use ' instead of " so $(pwd) is evaluated at runtime
 ```
 
 

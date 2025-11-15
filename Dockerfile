@@ -3,7 +3,7 @@
 FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive \
-    APP_HOME=/opt/nodeprof
+    APP_HOME=/works/nodeprof
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     software-properties-common \
@@ -24,18 +24,16 @@ RUN add-apt-repository -y ppa:deadsnakes/ppa \
        python3.11-venv \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR ${APP_HOME}
 COPY . .
 RUN chmod +x docker/build.sh
-
 RUN ./docker/build.sh
 
-RUN mkdir -p /works/input
-WORKDIR /works/nodeprof.js
-VOLUME ["/works/input"]
+RUN . /works/jdk.env && \
+    echo "export JAVA_HOME=$JAVA_HOME" >> /etc/profile && \
+    echo "export EXTRA_JAVA_HOMES=$JAVA_HOME" >> /etc/profile
 
-# ENV PATH="${APP_HOME}/bin:${PATH}" \
-#     CLI_BIN="${APP_HOME}/bin/nodeprof"
+WORKDIR /works/nodeprof.js
+VOLUME ["/works/nodeprof.js/input"]
 
 ENTRYPOINT ["/works/mx/mx"]
 CMD ["--help"]
