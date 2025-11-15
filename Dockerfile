@@ -28,9 +28,7 @@ COPY . .
 RUN chmod +x docker/build.sh
 RUN ./docker/build.sh
 
-RUN . /works/jdk.env && \
-    echo "export JAVA_HOME=$JAVA_HOME" >> /etc/profile && \
-    echo "export EXTRA_JAVA_HOMES=$JAVA_HOME" >> /etc/profile
+RUN /works/mx/select_jdk.py -p /works/nodeprof.js
 
 WORKDIR /works/nodeprof.js
 VOLUME ["/works/nodeprof.js/input"]
