@@ -30,11 +30,12 @@ RUN chmod +x docker/build.sh
 
 RUN ./docker/build.sh
 
+RUN mkdir -p /works/input
 WORKDIR /works
 VOLUME ["/works/input"]
 
 # ENV PATH="${APP_HOME}/bin:${PATH}" \
 #     CLI_BIN="${APP_HOME}/bin/nodeprof"
 
-ENTRYPOINT ["/works/mx"]
+ENTRYPOINT ["/works/mx/mx"]
 CMD ["--help"]
