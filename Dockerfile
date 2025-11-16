@@ -31,6 +31,10 @@ RUN ./docker/build.sh
 RUN touch $HOME/.mx/jdk_cache
 RUN printf "0\n" | /works/mx/select_jdk.py -p /works/nodeprof.js
 
+ENV JAVA_HOME="$(cat /opt/java_home)"
+ENV PATH="$JAVA_HOME/bin:${PATH}"
+ENV PATH="/works/mx:${PATH}"
+
 WORKDIR /works/nodeprof.js
 VOLUME ["/works/nodeprof.js/input"]
 
