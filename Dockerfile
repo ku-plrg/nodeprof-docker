@@ -43,5 +43,7 @@ RUN mx jalangi; \
 
 VOLUME ["/works/nodeprof.js/input"]
 
+WORKDIR /works/nodeprof.js/input
+
 ENTRYPOINT ["/works/mx/mx"]
 CMD ["--help"]
