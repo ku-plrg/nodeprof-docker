@@ -37,8 +37,9 @@ ENV PATH="/works/mx:${PATH}"
 
 WORKDIR /works/nodeprof.js
 
-# do npm install to cache node modules
-RUN mx jalangi
+# do npm install to cache node modules, intended to exit with code 1 (no input file)
+RUN mx jalangi; \
+    test $? -eq 1
 
 VOLUME ["/works/nodeprof.js/input"]
 
