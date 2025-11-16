@@ -36,6 +36,10 @@ ENV PATH="$JAVA_HOME/bin:${PATH}"
 ENV PATH="/works/mx:${PATH}"
 
 WORKDIR /works/nodeprof.js
+
+# do npm install to cache node modules
+RUN mx jalangi
+
 VOLUME ["/works/nodeprof.js/input"]
 
 ENTRYPOINT ["/works/mx/mx"]
