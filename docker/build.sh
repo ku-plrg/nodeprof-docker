@@ -7,6 +7,8 @@ cd /works/mx
 # https://github.com/Haiyang-Sun/nodeprof.js/issues/115#issue-2456364190
 git switch -c build-7.7.1 7.7.1
 export PATH="/works/mx:${PATH}"
+echo "export PATH='/works/mx:${PATH}'" >> "$HOME/.bashrc"
+echo "export PATH='/works/mx:${PATH}'" >> "$HOME/.profile"
 
 export JAVA_HOME="$(printf "y\n" | mx fetch-jdk --java-distribution labsjdk-ce-17 | grep '^export JAVA_HOME=' | cut -d= -f2)"
 echo "JAVA_HOME=${JAVA_HOME}" > /works/jdk.env
