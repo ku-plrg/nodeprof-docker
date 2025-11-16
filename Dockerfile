@@ -28,7 +28,8 @@ COPY . .
 RUN chmod +x docker/build.sh
 RUN ./docker/build.sh
 
-RUN /works/mx/select_jdk.py -p /works/nodeprof.js
+RUN touch $HOME/.mx/jdk_cache
+RUN printf "0\n" | /works/mx/select_jdk.py -p /works/nodeprof.js
 
 WORKDIR /works/nodeprof.js
 VOLUME ["/works/nodeprof.js/input"]
