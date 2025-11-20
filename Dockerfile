@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM ubuntu:22.04
+FROM python:3.11-slim
 
 ENV DEBIAN_FRONTEND=noninteractive \
     APP_HOME=/works/nodeprof
@@ -13,20 +13,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     pkg-config \
     gnupg \
-    dirmngr \
-    && rm -rf /var/lib/apt/lists/*
+    dirmngr
 
-RUN add-apt-repository -y ppa:deadsnakes/ppa \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends \
-       python3.11 \
-       python3.11-dev \
-       python3.11-venv \
-    && rm -rf /var/lib/apt/lists/*
-
+    
 COPY . .
 RUN chmod +x docker/build.sh
 RUN ./docker/build.sh
+
+# remove build dependencies and clean up
+RUN apt-get remove -y software-properties-common build-essential pkg-config gnupg dirmngr
+RUN apt-get autoremove -y
+RUN rm -rf /var/lib/apt/lists/* ; rm -rf /tmp/* /var/tmp/*
 
 RUN touch $HOME/.mx/jdk_cache
 RUN printf "0\n" | /works/mx/select_jdk.py -p /works/nodeprof.js
