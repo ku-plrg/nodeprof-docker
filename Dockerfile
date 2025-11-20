@@ -6,22 +6,17 @@ ENV DEBIAN_FRONTEND=noninteractive \
     APP_HOME=/works/nodeprof
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    software-properties-common \
-    ca-certificates \
     curl \
     git \
     build-essential \
-    pkg-config \
-    gnupg \
-    dirmngr
+    pkg-config
 
-    
 COPY . .
 RUN chmod +x docker/build.sh
 RUN ./docker/build.sh
 
 # remove build dependencies and clean up
-RUN apt-get remove -y software-properties-common build-essential pkg-config gnupg dirmngr
+RUN apt-get remove -y build-essential pkg-config
 RUN apt-get autoremove -y
 RUN rm -rf /var/lib/apt/lists/* ; rm -rf /tmp/* /var/tmp/*
 
